@@ -1,25 +1,30 @@
-pipeline {
-    agent any
-
-    stages {
-        stage('Hello') {
-            steps {
-                sh''' ls -lrt
-                sudo su
-                sudo docker version
-                sudo docker ps 
-                sudo docker ps -a 
-                sudo docker volume ls
-                sudo rm -rf docker-java
-                git clone https://github.com/Ikrao/docker-java.git
-                cd docker-java/docker-spring-boot
+node {
+   
+    stage('pre-build') { 
+        sh '''
+            sudo rm -rf docker-java
+        '''
+        git 'https://github.com/Ikrao/docker-java.git'
+       
+    }
+    stage('Build') {
+        
+                sh '''
+                pwd
+                cd docker-spring-boot
                 mvn clean package
                 sudo docker build -t spring-boot:1.0 .
+                '''
+            
+        
+    }
+    stage('run') {
+        
+        sh'''
+                sudo docker stop springboot && sudo docker rm springboot
+                sudo docker stop springboot && sudo rm springboot 
                 sudo docker run --name springboot -d -p 8090:8080 -t spring-boot:1.0
                 echo 'containers running'
-                
-                '''
-            }
-        }
+        '''
     }
 }
