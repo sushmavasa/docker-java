@@ -18,10 +18,10 @@ spec:
     spec:
       containers:
       - name: spring-container
-        image: 492176696130.dkr.ecr.us-east-1.amazonaws.com/springboot:1.0
+        image: xxxxx.dkr.ecr.xxxx.amazonaws.com/springboot:1.0
         imagePullPolicy: Always
         ports:
           - name: web
             containerPort: 8080
       imagePullSecrets:
-          - name: regcred
+          - name: my-sec
