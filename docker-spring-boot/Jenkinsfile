@@ -21,8 +21,7 @@ node {
     stage('run') {
         
         sh'''
-                sudo docker stop springboot && sudo docker rm springboot
-                sudo docker stop springboot && sudo rm springboot 
+                sudo docker stop springboot && sudo docker rm springboot 
                 sudo docker run --name springboot -d -p 8090:8080 -t spring-boot:1.0
                 echo 'containers running'
         '''
