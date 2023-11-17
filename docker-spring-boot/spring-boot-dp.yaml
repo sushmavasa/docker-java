@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: spring-container
-        image: xxxxx.dkr.ecr.xxxx.amazonaws.com/springboot:1.0
+        image: 941381157518.dkr.ecr.eu-west-2.amazonaws.com/springboot:latest
         imagePullPolicy: Always
         ports:
           - name: web
